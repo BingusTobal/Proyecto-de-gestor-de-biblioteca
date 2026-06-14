@@ -1,0 +1,74 @@
+.CENTRO{
+    text-align: center;
+}
+
+h1{
+    font-family: 'Poppins', 'Arial Black', sans-serif;
+    font-smooth: always;    
+}
+
+body{
+    background-color: #8a6b4a;
+}
+
+.menu{
+    display:flex;
+    background-color: black;
+    justify-content:center;
+    gap:80px;
+}
+
+.menu li{
+    position:relative;
+}
+
+.menu a{
+    display:block;
+    padding:20px 30px;
+    color:white;
+    text-decoration:none;
+}
+
+.menu a:hover{
+    background:#1e73be;
+}
+
+.submenu{
+    display:none;
+    position:absolute;
+    top:100%;
+    left:0;
+
+    min-width:250px;
+
+    background:#1e73be;
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.submenu li{
+    width:100%;
+}
+
+.dropdown:hover .submenu{
+    display:block;
+}
+
+
+.btn-add {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 14px;
+    height: 36px;
+    background: var(--color-text-primary);
+    color: var(--color-bg-primary);
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: opacity 0.15s;
+}

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de usuarios</title>
+    <link href="{{ url_for('static', filename='Usuario.css') }}" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>Gestor de usuarios</h1>
+    </header>
+    <div class="CENTRO">
+        <button type="button" id="añadir" class="boton_aña">Añadir nuevo usuario</button>
+    </div>
+    <div id="superior" class="superior_fondo oculto">
+        <div class="Contenido">
+            <div>
+                <h3>Añade un nuevo usuario</h3>
+                <p>Inserta los siguientes datos del usuario:</p>
+            </div>
+
+            <div>
+                <label>Ingrese nuevo nombre y apellido:</label>
+                <input type="text" id="nuevo_nombre" placeholder="ej: Cristobal Espinosa"> 
+            </div>
+            <div>
+                <label>Ingrese nuevo tipo de usuario:</label>
+                <select name="tipo" id="tipo">Tipo de usuario
+                    <option value="normal">usuario general</option>
+                    <option value="vip">usuario vip</option>
+                    <option value="estudiante">estudiante</option>
+                    <option value="infantil">usuario infantil</option>
+                </select>
+            </div>
+            <div>
+                <label>Ingrese su email:</label>
+                <input type="email" id="nuevo_email" placeholder="ej: Cristobal@email.com"> 
+            </div>
+            <div>
+                <label>Ingrese el estado:</label>
+                <select name="estado" id="Estado_tipo"> estado
+                    <option value="activo">activo</option>
+                    <option value="inactivo">inactivo</option>
+                </select> 
+            </div>
+            <div>
+                <label>Ingrese su numero de telefono</label>
+                <input type="number" id="NumeroTelefono" placeholder="961454633">
+            </div>
+            <div>
+                <button type="button" id="boton_insertar" class="boton_edi">Ingresar usuario</button>
+                <button type="button" id="Nuevo_boton_cancelar" class="boton_edi">Cancelar</button>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <div class="Tabla_info">
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Tipo usuario</th>
+                    <th>Email</th>
+                    <th>Estado</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+        </table>
+    </div>
+
+
+
+    <div id="base_fondo" class="base_fondo oculto">
+        <div class="Contenido">
+            <div>
+                <h3>Editar Perfil de Usuario</h3>
+                <p>Modifica los campos que deseas actualizar:</p>
+            </div>
+
+            <div>
+                <label>Ingrese nuevo nombre y apellido:</label>
+                <input type="text" id="campo_nombre" placeholder="ej: Cristobal Espinosa"> 
+            </div>
+            <div>
+                <label>Ingrese nuevo tipo de usuario:</label>
+                <input type="text" id="campo_tipo" placeholder="ej: Usuario normal"> 
+            </div>
+            <div>
+                <label>Ingrese nuevo email:</label>
+                <input type="email" id="campo_email" placeholder="ej: Cristobal@email.com"> 
+            </div>
+            <div>
+                <label>Ingrese nuevo estado:</label>
+                <input type="text" id="campo_estado" placeholder="ej: Activo"> 
+            </div>
+            <div>
+                <button type="button" id="boton_guardar" class="boton_edi">Actualizar usuario</button>
+                <button type="button" id="boton_cancelar" class="boton_edi">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

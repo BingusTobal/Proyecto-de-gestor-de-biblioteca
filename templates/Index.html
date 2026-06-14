@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>proyecto</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+    <div class="CENTRO">
+        <h1>Biblioteca Digital LecturaGlobal</h1>
+    </div>
+
+    <nav class="CENTRO">
+        <ul class="menu">
+
+            <li class="dropdown">
+                <a href="#">Usuarios</a>
+
+                <ul class="submenu">
+                    <li><a href="{{ url_for('usuarios') }}">Gestor de usuarios</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Libros</a>
+
+                <ul class="submenu">
+                    <li><a href="#">Gestor de libros</a></li>
+                </ul>
+            </li>
+
+            <li class="dropdown">
+                <a href="#">Prestamos</a>
+
+                <ul class="submenu">
+                    <li><a href="#">Gestor de prestamos</a></li>
+                </ul>
+            </li>
+
+        </ul>
+    </nav>
+
+    <div>
+        
+    </div>
+
+</body>
+</html>

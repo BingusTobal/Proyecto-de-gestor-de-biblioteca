@@ -1,0 +1,75 @@
+from flask import Flask, render_template, request,jsonify
+from datetime import datetime
+from pymongo import MongoClient
+
+
+cliente = MongoClient("mongodb://localhost:27017/")
+
+app = Flask(__name__)
+
+db = cliente["Biblioteca"]
+coleccion_user = db["Usuarios"]
+
+
+def Deserie(user):
+    user["_id"] = str(user["_id"])
+    return user
+
+@app.route('/')
+
+def inicio():
+
+    return render_template('index.html')
+
+
+@app.route('/api/usuarios')
+
+def get_usuarios():
+    usuarios = list(coleccion_user.find())
+    return jsonify([Deserie(u) for u in usuarios])
+
+@app.route("/api/usuarios/<id>", methods =["GET"])
+def get_UN_usuario(id):
+    usuario= coleccion_user.find_one({
+        "_id":int(id)})
+    return jsonify(Deserie(usuario))
+
+@app.route("/api/usuarios/<id>", methods=["PUT"])
+
+def actuali_usuarios(id):
+    datos = request.get_json()
+
+    coleccion_user.update_one(
+        {"_id":int(id)},
+        {"$set":datos}
+    )
+    return jsonify({"mensaje":"actualizado"})
+
+@app.route('/api/usuarios/<id>', methods = ["DELETE"])
+
+def eliminar_usuario(id):
+
+    coleccion_user.delete_one({"_id":int(id)})
+
+    return jsonify({"mensaje":"eliminado"})
+
+@app.route('/api/usuarios', methods =["POST"])
+
+def añadir_usuario():
+    datos = request.get_json()
+    ultimo = coleccion_user.find_one(sort=[("_id", -1)])
+    nuevo_id = (ultimo["_id"]+1) if ultimo else 1
+
+    datos["_id"] = nuevo_id
+    datos["Fecha_regis"] = datetime.now()
+    coleccion_user.insert_one(datos)
+
+    return jsonify({"mensaje":"creado","id":nuevo_id})
+
+@app.route('/usuarios')
+
+def usuarios():
+    return render_template('Usuarios.html')
+
+
+app.run(debug=True)
