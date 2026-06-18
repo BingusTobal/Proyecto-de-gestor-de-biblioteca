@@ -4,9 +4,184 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestor usuarios</title>
-    <link href="{{ url_for('static', filename='style.css') }}" rel="stylesheet">
+    <link href="{{ url_for('static', filename='Libros.css') }}" rel="stylesheet">
 </head>
 <body>
-    
+    <header>
+        <h1>GESTOR DE LIBROS</h1>
+    </header>
+    <div class="CENTRO">
+        <button type="button" class="boton_aña" id="boton_nuevo_li">Ingresar nuevo libro</button>
+    </div>
+
+    <div id="superior" class="superior_fondo oculto">
+        <div class="Contenido">
+            <div>
+                <h3>Añade un nuevo libro</h3>
+                <p>Inserta los siguientes datos del usuario:</p>
+            </div>
+
+            <div>
+                <label>Nombre:</label>
+                <input type="text" id="nuevo_nombre_li" placeholder="ej: Papelucho detective"> 
+            </div>
+            <div>
+                <label>Autor::</label>
+                <input type="text" id="nuevo_autor" placeholder="Marcela Paz">
+            </div>
+            <div>
+                <label>Fecha publicacion:</label>
+                <input type="date" id="nueva_fecha"> 
+            </div>
+            <div>
+                <label>estado:</label>
+                <select name="estado" id="nuevo_estado"> estado
+                    <option value="Disponible">Disponible</option>
+                    <option value="NoDisponible">No Disponible</option>
+                </select> 
+            </div>
+            <div>
+                <label>Editorial:</label>
+                <input type="text" id="nueva_editorial" placeholder="Panini">
+            </div>
+
+            <div>
+                <label>ISBN</label>
+                <input type="number" id="nuevo_ISBN" placeholder="9781509431168">
+            </div>
+
+            <div>
+                <label>Numero de pagina:</label>
+                <input type="number" id="pagina_nuevo">
+            </div>
+
+            <div>
+                <label>Genero:</label>
+                <select name="Genero" id="Nuevo_genero">
+                    <option value="suspenso">Suspenso</option>
+                    <option value="Historica">Historica</option>
+                    <option value="Romantica">Romantica</option>
+                    <option value="Ficcion">Ciencia Ficcion</option>
+                    <option value="Distopia">Distopia</option>
+                    <option value="Aventuras">Aventuras</option>
+                    <option value="Fantasia">Fantasia</option>
+                    <option value="Contemporaneo">Contemporanio</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Paranormal">Paranormal</option>
+                    <option value="Poesia">Poesia</option>
+                    <option value="Infantil">Infantil</option>
+                    <option value="Juvenil">Juvenil</option>
+                    <option value="Salud">Deporte y salud</option>
+                    <option value="Biografia">Biografia</option>
+                    <option value="Cocina">Cocina</option>
+                    <option value="Viajes">Viaje</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Ubicacion en la biblioteca</label>
+                <input type="text" id="Ubi_biblio" placeholder="Pasillo 3">
+            </div>
+            <div>
+                <button type="button" id="boton_nuevo_libro" class="boton_edi">Ingresar libro</button>
+                <button type="button" id="boton_cancelar_libro" class="boton_edi">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="Tabla_info" >
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Genero</th>
+                    <th>Autor</th>
+                    <th>Estado</th>
+                    <th>Accion</th>
+                </tr>
+            </thead>
+            <tbody id="tbodys"></tbody>
+        </table>
+    </div>
+
+
+    <div id="fondo" class="fondo_actu oculto">
+        <div class="Contenido">
+            <div>
+                <h3>Editar libro</h3>
+                <p>Ingrese los nuevos datos de los libros</p>
+            </div>
+
+            <div>
+                <label>Nombre:</label>
+                <input type="text" id="nombre_editado" placeholder="Papelucho casi huerfano">
+            </div>
+
+            <div>
+                <label>Autor:</label>
+                <input type="text" id="autor_editado" placeholder="Marcela Paz">
+            </div>
+
+            <div>
+                <label>Fecha publicacion:</label>
+                <input type="date" id="editada_fecha"> 
+            </div>
+            <div>
+                <label>estado:</label>
+                <select name="estado" id="editada_estado">
+                    <option value="Disponible">Disponible</option>
+                    <option value="No Disponible">No Disponible</option>
+                </select> 
+            </div>
+
+            <div>
+                <label>Editorial:</label>
+                <input type="text" id="editada_editorial" placeholder="Panini">
+            </div>
+
+            <div>
+                <label>ISBN</label>
+                <input type="number" id="editado_ISBN" placeholder="9781509431168">
+            </div>
+
+            <div>
+                <label>Numero de pagina:</label>
+                <input type="number" id="pagina_editada">
+            </div>
+
+            <div>
+                <label>Genero:</label>
+                <select name="Genero" id="editado_genero">
+                    <option value="suspenso">Suspenso</option>
+                    <option value="Historica">Historica</option>
+                    <option value="Romantica">Romantica</option>
+                    <option value="Ficcion">Ciencia Ficcion</option>
+                    <option value="Distopia">Distopia</option>
+                    <option value="Aventuras">Aventuras</option>
+                    <option value="Fantasia">Fantasia</option>
+                    <option value="Contemporaneo">Contemporanio</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Paranormal">Paranormal</option>
+                    <option value="Poesia">Poesia</option>
+                    <option value="Infantil">Infantil</option>
+                    <option value="Juvenil">Juvenil</option>
+                    <option value="Salud">Deporte y salud</option>
+                    <option value="Biografia">Biografia</option>
+                    <option value="Cocina">Cocina</option>
+                    <option value="Viajes">Viaje</option>
+                </select>
+            </div>
+            <div>
+                <label>Ubicacion en la biblioteca</label>
+                <input type="text" id="Ubi_biblio" placeholder="Pasillo 3">
+            </div>
+            <div>
+                <button type="button" id="boton_editar" class="boton_edi">Actualizar usuario</button>
+                <button type="button" id="boton_cancelar_edita" class="boton_edi">Cancelar</button>
+            </div>
+        </div>
+    </div>
 </body>
+<script src="{{ url_for('static', filename='script_libro.js') }}"></script>
 </html>

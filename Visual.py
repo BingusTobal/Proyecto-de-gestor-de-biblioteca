@@ -9,6 +9,7 @@ app = Flask(__name__)
 
 db = cliente["Biblioteca"]
 coleccion_user = db["Usuarios"]
+coleccion_libro = db["Libros"]
 
 
 def Deserie(user):
@@ -29,6 +30,7 @@ def get_usuarios():
     return jsonify([Deserie(u) for u in usuarios])
 
 @app.route("/api/usuarios/<id>", methods =["GET"])
+
 def get_UN_usuario(id):
     usuario= coleccion_user.find_one({
         "_id":int(id)})
@@ -70,6 +72,52 @@ def añadir_usuario():
 
 def usuarios():
     return render_template('Usuarios.html')
+
+@app.route('/api/libros')
+
+def get_libros():
+    libros = list(coleccion_libro.find())
+    return jsonify([Deserie(l) for l in libros])
+
+@app.route('/api/libros/<id>', methods=["GET"])
+
+def get_UN_libro(id):
+    libro = coleccion_libro.find_one({
+        "_id":int(id)})
+    return jsonify(Deserie(libro))
+
+@app.route('/api/libros/<id>', methods = ["PUT"])
+
+def actual_libro(id):
+    datos = request.get_json()
+    coleccion_libro.update_one(
+        {"_id":int(id)},
+        {"$set":datos}
+    )
+    return jsonify({"mensaje":"actualizado"})
+
+@app.route('/api/libros/<id>', methods = ["DELETE"])
+
+def borrarLibro(id):
+    coleccion_libro.delete_one({"_id":int(id)})
+    return jsonify({"mensaje":"Eliminado"})
+
+@app.route('/api/libros', methods = ["POST"])
+
+def añadirLibro():
+    datos = request.get_json()
+    ultimo = coleccion_libro.find_one(sort=[("_id", -1)])
+    nuevo_id = (ultimo["_id"]+1) if ultimo else 1
+
+    datos["_id"] = nuevo_id
+
+    coleccion_libro.insert_one(datos)
+    return jsonify({"mensaje":"registrado","id":nuevo_id})
+
+@app.route('/libros')
+
+def libros():
+    return render_template("Libros.html")
 
 
 app.run(debug=True)
