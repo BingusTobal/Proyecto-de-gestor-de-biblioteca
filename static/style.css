@@ -3,7 +3,7 @@
 }
 
 h1{
-    font-family: 'Poppins', 'Arial Black', sans-serif;
+    font-family: 'Georgia', serif;
     font-smooth: always;    
 }
 
@@ -71,4 +71,33 @@ body{
     cursor: pointer;
     white-space: nowrap;
     transition: opacity 0.15s;
+}
+
+.usua_sistema {
+    background-color: #FFFFFF;
+    text-align: center;       
+    border-radius: 10px; 
+    
+
+    border: 1px solid #D7CCC8; 
+    border-left: 8px solid #8B4513;
+    
+    width: 480px;             
+    padding: 25px;
+    box-sizing: border-box;   
+    
+
+    box-shadow: 0 4px 15px rgba(62, 39, 35, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.Grafica_datos {
+    width: 100%;
+    display: flex;
+    flex-direction: column;   
+    justify-content: center;  
+    align-items: center;      
+    gap: 25px; /* Un pelo más de separación */
+    padding: 40px 0;          
 }

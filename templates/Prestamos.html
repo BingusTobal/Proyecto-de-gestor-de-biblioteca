@@ -3,9 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Prestamo</title>
+    <link href="{{ url_for('static', filename='Prestamo.css') }}" rel="stylesheet">
 </head>
 <body>
-    
+    <header>
+        <h1>Gestor de prestamos</h1>
+    </header>
+    <div class="CENTRO">
+        <button type="button" id="nuevo_boton_prestamo" class="boton_aña">ingresar nuevo prestamo</button>
+    </div>
+
+    <div id="top" class="Top_fondo oculto">
+        <div class="Contenido">
+            <div>
+                <h3>añade un nuevo prestamo</h3>
+                <p>Rellene los siguientes datos del prestamo </p>
+            </div>
+
+            <div>
+                <label>Usuario</label>
+                <select id="elegi_usua">
+                </select>
+            </div>
+            
+            <div>
+                <label>libro</label>
+                <select id="elegi_li">
+
+                </select>
+            </div>
+
+            <div>
+                <label>Estado</label>
+                <select id="Presta_esta">
+                    <option value="Activo">Activo</option>
+                    <option value="Terminado">Terminado</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Fecha inicio prestamo</label>
+                <input id="fecha_pres" type="date">
+            </div>
+
+            <div>
+                <label>Fecha terminio prestamo</label>
+                <input id="fecha_term" type="date">
+            </div>
+
+            <div>
+                <button type="button" id="crea_presta" class="boton_edi">realizar prestamo</button>
+                <button type="button" id="cancelar_presta" class="boton_edi">cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="Tabla_info">
+        <table>
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>libro</th>
+                    <th>usuario</th>
+                    <th>estado</th>
+                    <th>fecha de prestamo</th>
+                    <th>fecha de regreso</th>
+                    <th>accion</th>
+                </tr>
+            </thead>
+            <tbody id="cuerpo"></tbody>
+        </table>
+    </div>
+
+    <div id="Top_edi" class="Top_fondo oculto">
+        <div class="Contenido">
+            <div>
+                <label>Usuario:</label>
+                <select id="editar_usua"></select>
+            </div>
+
+            <div>
+                <label>Libro: </label>
+                <select id="editar_li"></select>
+            </div>
+
+            <div>
+                <label>Estado:</label>
+                <select id="Editar_estado">
+                    <option value="Activo">Activo</option>
+                    <option value="Terminado">Terminado</option>
+                </select>
+            </div>
+
+            <div>
+                <label>Fecha-Prestamo</label>
+                <input type="date" id="Nueva_fecha_presta" >
+            </div>
+
+            <div>
+                <label>Fecha Termino</label>
+                <input type="date" id="Nueva_fecha_termi">
+            </div>
+
+            <div>
+                <button type="button" id="Editar_presta">Editar prestamo</button>
+                <button type="button" id="Cancelar_presta">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script_presta.js') }}"></script>
 </body>
 </html>

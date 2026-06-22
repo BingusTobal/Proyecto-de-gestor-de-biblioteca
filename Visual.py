@@ -10,6 +10,7 @@ app = Flask(__name__)
 db = cliente["Biblioteca"]
 coleccion_user = db["Usuarios"]
 coleccion_libro = db["Libros"]
+coleccion_prestamos = db["Prestamo"]
 
 
 def Deserie(user):
@@ -120,4 +121,55 @@ def libros():
     return render_template("Libros.html")
 
 
+
+@app.route('/prestamos')
+
+def prestamos():
+    return render_template("prestamos.html")
+
+
+@app.route("/api/prestamos")
+
+def cargarPrestamos():
+    prestamos = list(coleccion_prestamos.find())
+    return jsonify([Deserie(p) for p in prestamos])
+
+@app.route("/api/prestamos", methods = ["POST"])
+
+def añadirPrestamo():
+    datos = request.get_json()
+
+
+    ultimo = coleccion_prestamos.find_one(sort =[("_id",-1)])
+    nuevo_id = (ultimo["_id"]+1) if ultimo else 1
+
+    datos["_id"] = nuevo_id
+
+    coleccion_prestamos.insert_one(datos)
+    return jsonify({"mensaje":"prestamo añadido","id":nuevo_id})
+
+
+@app.route("/api/prestamos/<id>", methods = ["DELETE"])
+
+def borrarPrestamo(id):
+    coleccion_prestamos.delete_one({"_id":int(id)})
+    return jsonify({"mensaje":"Eliminado"})
+
+@app.route("/api/prestamos/<id>", methods = ["GET"])
+
+def get_UN_prestamo(id):
+    prestamo = coleccion_prestamos.find_one({
+        "_id":int(id)})
+    return jsonify(Deserie(prestamo))
+
+@app.route("/api/prestamos/<id>", methods = ["PUT"])
+
+def Actuali_presta(id):
+    datos = request.get_json()
+
+    coleccion_prestamos.update_one(
+        {"_id":int(id)},
+        {"$set":datos}
+    )
+    return jsonify({"mensaje":"actualizado"})
 app.run(debug=True)

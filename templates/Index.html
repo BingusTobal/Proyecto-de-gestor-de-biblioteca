@@ -35,16 +35,30 @@
                 <a href="#">Prestamos</a>
 
                 <ul class="submenu">
-                    <li><a href="#">Gestor de prestamos</a></li>
+                    <li><a href="{{ url_for('prestamos') }}">Gestor de prestamos</a></li>
                 </ul>
             </li>
 
         </ul>
     </nav>
+    <br>
+    <br>
 
-    <div>
+    <div class="Grafica_datos" >
         
+        <div class="usua_sistema" >
+            <h2>Usuarios en el sistema: <span id="contador_usuarios">0</span></h2>
+        </div>
+        <br>
+        <div class="usua_sistema" >
+            <h2>Libros en el sistema: <span id="contador_libros">0</span></h2>
+        </div>
+        <br>
+        <div class="usua_sistema" >
+            <h2>Prestamos en el sistema:<span id="contador_prestamos">0</span> </h2>
+        </div>
     </div>
 
+    <script src="{{ url_for('static', filename='index_script.js') }}"></script>
 </body>
 </html>
