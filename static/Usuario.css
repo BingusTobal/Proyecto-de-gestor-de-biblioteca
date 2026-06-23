@@ -126,3 +126,30 @@ header{
     align-items: center;
     z-index: 999
 }
+
+.barra_busqueda {
+    width: 90%;
+    margin: 1rem auto;
+    text-align: center;
+}
+
+.input_buscar {
+    width: 300px;
+    padding: 8px 14px;
+    border-radius: 20px;          
+    border: 2px solid #c8a97a;   
+    background: #f5ede0;          
+    font-size: 14px;
+    color: #3d2c10;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+}
+
+.input_buscar:focus {
+    border-color: #8a6b4a;      
+    box-shadow: 0 0 0 3px rgba(138,107,74,.2);
+}
+
+.input_buscar::placeholder {
+    color: #a08060;             
+}

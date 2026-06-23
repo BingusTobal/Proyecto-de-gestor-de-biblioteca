@@ -1,6 +1,7 @@
 const APITOBAL = "/api/usuarios"
 const tabla_body = document.getElementById("tbody")
 let actulizarUsu = null
+let Espe_usu = []
 document.addEventListener("DOMContentLoaded", ()=>{
   document.getElementById("boton_guardar").addEventListener("click", () => {
     EventoActualizar()
@@ -19,6 +20,10 @@ document.addEventListener("DOMContentLoaded", ()=>{
 
   document.getElementById("añadir").addEventListener("click",()=>{
     document.getElementById("superior").classList.remove("oculto")
+  })
+
+  document.getElementById("Busque_usu").addEventListener("input",()=>{
+    buscar_barra()
   })
 
   cargarUsusarios()
@@ -154,6 +159,19 @@ async function añadir_usuario() {
 async function cargarUsusarios() {
     fetch(APITOBAL)
         .then(r => r.json())
-        .then(data => Actua_tabla(data))
+        .then(data =>{
+          Actua_tabla(data),
+          Espe_usu = data
+        })
         .catch(error => console.error("Error al cargar usuarios:", error))
+}
+
+
+
+async function buscar_barra(){
+  const contenido = document.getElementById("Busque_usu").value.toLowerCase()
+
+  const filtro = Espe_usu.filter(u=> u.Nombre_Usu.toLowerCase().includes(contenido)
+  )
+  Actua_tabla(filtro)
 }
