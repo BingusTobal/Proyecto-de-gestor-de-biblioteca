@@ -1,5 +1,6 @@
 const tobalapi = "/api/libros"
 let actu_libro = null
+let Espe_libr = []
 const tbody = document.getElementById("tbodys")
 
 document.addEventListener("DOMContentLoaded",()=>{
@@ -21,6 +22,10 @@ document.addEventListener("DOMContentLoaded",()=>{
     document.getElementById("boton_cancelar_libro").addEventListener("click",()=>{
         document.getElementById("superior").classList.add("oculto")
     })
+    document.getElementById("Busque_libro").addEventListener("input",()=>{
+        buscar_barra_libr()
+    })
+    cargarlibros()
 })
 
 function nuevatabla(lista){
@@ -97,7 +102,7 @@ async function EventActuali() {
         Autor : document.getElementById("autor_editado").value,
         Editoriales : document.getElementById("editada_editorial").value,
         Estado : document.getElementById("editada_estado").value,
-        ISBN : document.getElementById("editado_ISBN"),
+        ISBN : document.getElementById("editado_ISBN").value,
         Num_paginas : document.getElementById("pagina_editada").value,
         Genero : document.getElementById("editado_genero").value,
         Ubicacion_biblio : document.getElementById("Ubi_biblio").value
@@ -166,9 +171,20 @@ async function añadirlibro() {
 async function cargarlibros() {
     fetch(tobalapi)
     .then(r=> r.json())
-    .then(data => nuevatabla(data))
+    .then(data => {
+        Espe_libr = data,
+        nuevatabla(data)
+    })
     .catch(error => console.error("error en la tabla", error) )
     
 }
 
-cargarlibros()
+
+async function buscar_barra_libr(){
+  const contenido = document.getElementById("Busque_libro").value.toLowerCase()
+
+    
+  const filtro = Espe_libr.filter(u=> u.Nombre_li.toLowerCase().includes(contenido)
+  )
+  nuevatabla(filtro)
+}

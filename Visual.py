@@ -21,7 +21,7 @@ def Deserie(user):
 
 def inicio():
 
-    return render_template('index.html')
+    return render_template('Index.html')
 
 
 @app.route('/api/usuarios')
@@ -125,7 +125,7 @@ def libros():
 @app.route('/prestamos')
 
 def prestamos():
-    return render_template("prestamos.html")
+    return render_template("Prestamos.html")
 
 
 @app.route("/api/prestamos")
@@ -172,4 +172,5 @@ def Actuali_presta(id):
         {"$set":datos}
     )
     return jsonify({"mensaje":"actualizado"})
+
 app.run(debug=True)
